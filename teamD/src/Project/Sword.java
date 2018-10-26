@@ -10,7 +10,6 @@ import framework.game2D.OvergroundActor2D;
  */
 public class Sword extends OvergroundActor2D {
 
-
 	@Override
 	public String getAnimationFileName() {
 		return null;
