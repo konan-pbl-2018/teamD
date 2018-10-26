@@ -53,7 +53,7 @@ public class TemplateAction2D extends SimpleActionGame {
 
 		// ステージの3Dデータを読み込み配置する
 		stage = new Ground2D("data\\stage3\\stage3.wrl",
-				"data\\images\\m101.jpg", windowSizeWidth, windowSizeHeight);
+				"data\\stage\\testhaikei.jpg", windowSizeWidth, windowSizeHeight);
 		//universe.place(stage);
 
 		haikei = new Ground2D(null,
@@ -75,29 +75,15 @@ public class TemplateAction2D extends SimpleActionGame {
 
 	@Override
 	public void progress(RWTVirtualController virtualController, long interval) {
-		if(dispcnt==0) {
-			universe.place(haikei);
-			dispcnt=1;
+
+		Title();
+		if (virtualController.isKeyDown(0, RWTVirtualController.DOWN)&&displayStatus==0) {
+			displayStatus=1;//ゲームスタート
+
 		}
-		if(virtualController.isKeyDown(0, RWTVirtualController.DOWN)) {
-			displayStatus=1;
-		}
-		if (displayStatus==0) {
 
-
-		}else {
-			if(dispcnt==1) {
-				universe.displace(haikei);
-				universe.place(stage);
-
-				universe.place(player); // universeに置く。後で取り除けるようにオブジェクトを配置する。
-				for(int i=0;i<ENEMYNUM;i++) {
-					universe.place(enemies.get(i)); // universeに置く。後で取り除けるようにオブジェクトを配置する。
-				}
-				universe.place(enemy2);
-				dispcnt=2;
-			}
-
+		if (displayStatus==1) {
+			GameSetUp();
 
 
 			curV = player.getVelocity();
@@ -133,7 +119,7 @@ public class TemplateAction2D extends SimpleActionGame {
 
 
 			if (player.getPosition().getY() < -RANGE / 2.0) {
-				player.setPosition(0.0, 0.0);
+				Reset();//タイトル画面へ(ゲームオーバー）
 			}
 
 			player.motion(interval, stage);
@@ -150,6 +136,55 @@ public class TemplateAction2D extends SimpleActionGame {
 
 		}
 	}
+
+	public  void Title() {
+		if(dispcnt==0) {
+			universe.place(haikei);
+			dispcnt=1;
+		}
+	}
+
+	public  void GameSetUp() {
+		if(dispcnt==1) {
+			universe.displace(haikei);
+			universe.place(stage);
+
+			universe.place(player); // universeに置く。後で取り除けるようにオブジェクトを配置する。
+			for(int i=0;i<ENEMYNUM;i++) {
+				universe.place(enemies.get(i)); // universeに置く。後で取り除けるようにオブジェクトを配置する。
+			}
+			universe.place(enemy2);
+			dispcnt=2;
+		}
+	}
+
+	public void Reset() {
+		dispcnt=0;
+		displayStatus=0;
+
+		universe.displace(stage);
+		universe.displace(player);
+		universe.displace(enemy2);
+		for(int i=0; i<ENEMYNUM;i++) {
+			universe.displace(enemies.get(i));
+		}
+
+
+		player.setPosition(0.0, 0.0);
+		player.setDirection(0.0, 0.0);
+
+
+		for(int i=0; i<ENEMYNUM; i++) {
+			enemies.get(i).setPosition(i, 5.0);
+			enemies.get(i).setDirection(1.0, 0.0);
+
+		}
+		enemy2.setPosition(0.0, 5.0);
+		enemy2.setDirection(1.0, 0.0);
+
+	}
+
+
 
 	/**
 	 * ゲームのメイン
