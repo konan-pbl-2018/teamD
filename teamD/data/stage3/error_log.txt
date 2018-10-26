@@ -1,0 +1,24 @@
+Begining error logging at 
+Fri Oct 26 16:01:58 2018
+error at d:\release\metaseq465\mqboolop\cork\src\mesh\mesh.isct.tpp, line #966: Ran out of tries to perturb the mesh
+Ending error logging at 
+Fri Oct 26 16:01:58 2018
+
+Begining error logging at 
+Fri Oct 26 16:02:08 2018
+error at d:\release\metaseq465\mqboolop\cork\src\mesh\mesh.isct.tpp, line #966: Ran out of tries to perturb the mesh
+Ending error logging at 
+Fri Oct 26 16:02:08 2018
+
+Begining error logging at 
+Fri Oct 26 16:02:21 2018
+error at d:\release\metaseq465\mqboolop\cork\src\mesh\mesh.isct.tpp, line #966: Ran out of tries to perturb the mesh
+Ending error logging at 
+Fri Oct 26 16:02:21 2018
+
+Begining error logging at 
+Fri Oct 26 16:02:24 2018
+error at d:\release\metaseq465\mqboolop\cork\src\mesh\mesh.isct.tpp, line #966: Ran out of tries to perturb the mesh
+Ending error logging at 
+Fri Oct 26 16:02:24 2018
+
