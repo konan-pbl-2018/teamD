@@ -1,16 +1,12 @@
 package templete.action2D;
 
-import javax.vecmath.Vector2d;
-
 import framework.RWT.RWTFrame3D;
 import framework.RWT.RWTVirtualController;
 import framework.game2D.Ground2D;
 import framework.game2D.OvergroundActor2D;
 import framework.game2D.Velocity2D;
 import framework.gameMain.SimpleActionGame;
-import framework.model3D.Object3D;
 import framework.model3D.Universe;
-import framework.physics.PhysicsUtility;
 
 public class TemplateAction2D extends SimpleActionGame {
 	private Player player;
@@ -88,7 +84,7 @@ public class TemplateAction2D extends SimpleActionGame {
 
 		if (virtualController.isKeyDown(0, RWTVirtualController.BUTTON_B)) {
 		}
-		
+
 		player.motion(interval, stage);
 		enemy.motion(interval, stage, player);
 
@@ -101,7 +97,7 @@ public class TemplateAction2D extends SimpleActionGame {
 
 	/**
 	 * ÉQÅ[ÉÄÇÃÉÅÉCÉì
-	 * 
+	 *
 	 * @param args
 	 */
 	public static void main(String[] args) {

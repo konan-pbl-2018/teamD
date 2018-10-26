@@ -41,7 +41,7 @@ public class Player extends OvergroundActor2D {
 	/**
 	 * キャラクタの位置を右に向くのと同時に右方向に動かす。
 	 *
-	 * @param d
+	 * @param
 	 *            動かす量
 	 */
 	public void movePositionRight(double d) {

@@ -90,6 +90,8 @@ public class TemplateAction2D extends SimpleActionGame {
 		player.motion(interval, stage);
 		enemy.motion(interval, stage, player);
 
+
+
 		// 衝突判定（プレイヤーと敵）
 		if (player.checkCollision(enemy)) {
 			System.out.println("敵に接触した！");
