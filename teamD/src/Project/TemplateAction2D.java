@@ -1,22 +1,20 @@
 package Project;
 
-import javax.vecmath.Vector2d;
-
 import framework.RWT.RWTFrame3D;
 import framework.RWT.RWTVirtualController;
 import framework.game2D.Ground2D;
 import framework.game2D.OvergroundActor2D;
 import framework.game2D.Velocity2D;
 import framework.gameMain.SimpleActionGame;
-import framework.model3D.Object3D;
 import framework.model3D.Universe;
-import framework.physics.PhysicsUtility;
 
 public class TemplateAction2D extends SimpleActionGame {
 	private Player player;
 	private Enemy enemy;
 
 	private Ground2D stage;
+
+
 
 	// あとで設計変更
 	// Enemyクラスでこの値を使いたいため。
@@ -88,9 +86,11 @@ public class TemplateAction2D extends SimpleActionGame {
 
 		if (virtualController.isKeyDown(0, RWTVirtualController.BUTTON_B)) {
 		}
-		
+
 		player.motion(interval, stage);
 		enemy.motion(interval, stage, player);
+
+
 
 		// 衝突判定（プレイヤーと敵）
 		if (player.checkCollision(enemy)) {
@@ -101,7 +101,7 @@ public class TemplateAction2D extends SimpleActionGame {
 
 	/**
 	 * ゲームのメイン
-	 * 
+	 *
 	 * @param args
 	 */
 	public static void main(String[] args) {
