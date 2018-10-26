@@ -16,6 +16,7 @@ public class Enemy extends OvergroundActor2D {
 	@Override
 	public String getAnimationFileName() {
 		return null;
+
 	}
 
 	@Override
@@ -29,7 +30,7 @@ public class Enemy extends OvergroundActor2D {
 		curv.setX(0.0);
 		this.setVelocity(curv);
 
-		this.movePositionLeft(0.05);
+		this.movePositionLeft(0.02);
 		super.motion(interval, ground);
 	}
 }
