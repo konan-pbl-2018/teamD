@@ -3,16 +3,16 @@ package Project;
 import javax.vecmath.Vector2d;
 
 import framework.game2D.OvergroundActor2D;
-import framework.game2D.Position2D;
 
 /**
  * プレイヤーのクラス
- * 
+ *
  * @author H.Kotobuki
- * 
+ *
  */
+
 public class Player extends OvergroundActor2D {
-	
+
 	private static final Vector2d LEFT_AXIS = new Vector2d(-1.0, 0.0);
 	private static final Vector2d Right_AXIS = new Vector2d(1.0, 0.0);
 	public double getCollisionRadius() {
@@ -29,7 +29,7 @@ public class Player extends OvergroundActor2D {
 
 	/**
 	 * キャラクタの位置を左に向くのと同時に左方向に動かす。
-	 * 
+	 *
 	 * @param d
 	 *            動かす量
 	 */
@@ -37,10 +37,10 @@ public class Player extends OvergroundActor2D {
 		super.setDirection(LEFT_AXIS);
 		super.movePositionLeft(d);
 	}
-	
+
 	/**
 	 * キャラクタの位置を右に向くのと同時に右方向に動かす。
-	 * 
+	 *
 	 * @param d
 	 *            動かす量
 	 */
@@ -48,7 +48,7 @@ public class Player extends OvergroundActor2D {
 		super.setDirection(Right_AXIS);
 		super.movePositionRight(d);
 	}
-	
+
 	public boolean isOnGround() {
 		if (getActor().isOnGround()) {
 			return true;
@@ -56,6 +56,6 @@ public class Player extends OvergroundActor2D {
 			return false;
 		}
 	}
-	
+
 
 }

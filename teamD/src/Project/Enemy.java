@@ -8,9 +8,9 @@ import framework.game2D.Velocity2D;
 
 /**
  * “G‚ÌƒNƒ‰ƒX
- * 
+ *
  * @author H.Kotobuki
- * 
+ *
  */
 public class Enemy extends OvergroundActor2D {
 	private static final double ENEMY_SPEED = 5.0;
@@ -24,7 +24,7 @@ public class Enemy extends OvergroundActor2D {
 	public String getModelFileName() {
 		return "data\\Head4.wrl";
 	}
-	
+
 	public void motion(long interval, Ground2D ground, Player player) {
 		Vector2d v = player.getPosition().getVector2d();
 		v.sub(getPosition().getVector2d());
@@ -34,3 +34,5 @@ public class Enemy extends OvergroundActor2D {
 		super.motion(interval, ground);
 	}
 }
+
+
