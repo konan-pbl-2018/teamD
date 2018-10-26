@@ -33,6 +33,7 @@ public class Enemy extends OvergroundActor2D {
 		if (this.isOnGround()) {
 			curv.setY(10.0);
 			this.setVelocity(curv);
+
 		}
 
 		this.movePositionLeft(0.02);

@@ -96,7 +96,6 @@ public class TemplateAction2D extends SimpleActionGame {
 				}
 				universe.place(enemy2);
 				dispcnt=2;
-
 			}
 
 
