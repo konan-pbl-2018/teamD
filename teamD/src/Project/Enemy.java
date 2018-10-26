@@ -1,7 +1,5 @@
 package Project;
 
-import javax.vecmath.Vector2d;
-
 import framework.game2D.Ground2D;
 import framework.game2D.OvergroundActor2D;
 import framework.game2D.Velocity2D;
@@ -13,7 +11,7 @@ import framework.game2D.Velocity2D;
  *
  */
 public class Enemy extends OvergroundActor2D {
-	private static final double ENEMY_SPEED = 5.0;
+	//private static final double ENEMY_SPEED = 5.0;
 
 	@Override
 	public String getAnimationFileName() {
@@ -26,11 +24,12 @@ public class Enemy extends OvergroundActor2D {
 	}
 
 	public void motion(long interval, Ground2D ground, Player player) {
-		Vector2d v = player.getPosition().getVector2d();
-		v.sub(getPosition().getVector2d());
-		v.normalize();
-		v.scale(ENEMY_SPEED);
-		setVelocity(new Velocity2D(v));
+		Velocity2D curv;
+		curv = this.getVelocity();
+		curv.setX(0.0);
+		this.setVelocity(curv);
+
+		this.movePositionLeft(0.05);
 		super.motion(interval, ground);
 	}
 }
