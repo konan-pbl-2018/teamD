@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import framework.RWT.RWTContainer;
 import framework.RWT.RWTFrame3D;
 import framework.RWT.RWTVirtualController;
 import framework.game2D.Ground2D;
@@ -39,42 +40,58 @@ public class TemplateAction2D extends SimpleActionGame {
 
 	private IGameState initialGameState = null;
 	private IGameState finalGameState = null;
+	private IGameState GameOverGameState = null;
 
-//	public TemplateAction2D() {
-//		super();
-//		initialGameState = new IGameState() {
-//			@Override
-//			public void init(RWTFrame3D frame) {
-//				TemplateAction2D.this.frame = frame;
-//				RWTContainer container = new StartContainer(TemplateAction2D.this);
-//				changeContainer(container);
-//			}
-//			@Override
-//			public boolean useTimer() {
-//				return false;
-//			}
-//			@Override
-//			public void update(RWTVirtualController virtualController, long interval) {
-//			}
-//		};
-//		finalGameState = new IGameState() {
-//			@Override
-//			public void init(RWTFrame3D frame) {
-//				TemplateAction2D.this.frame = frame;
-//				RWTContainer container = new EndingContainer(TemplateAction2D.this);
-//				changeContainer(container);
-//			}
-//			@Override
-//			public boolean useTimer() {
-//				return false;
-//			}
-//			@Override
-//			public void update(RWTVirtualController virtualController, long interval) {
-//			}
-//		};
-//		setCurrentGameState(initialGameState);
-//
-//	}
+	public TemplateAction2D() {
+		super();
+		initialGameState = new IGameState() {
+			@Override
+			public void init(RWTFrame3D frame) {
+				TemplateAction2D.this.frame = frame;
+				RWTContainer container = new StartContainer(TemplateAction2D.this);
+				changeContainer(container);
+			}
+			@Override
+			public boolean useTimer() {
+				return false;
+			}
+			@Override
+			public void update(RWTVirtualController virtualController, long interval) {
+			}
+		};
+		finalGameState = new IGameState() {
+			@Override
+			public void init(RWTFrame3D frame) {
+				TemplateAction2D.this.frame = frame;
+				RWTContainer container = new EndingContainer(TemplateAction2D.this);
+				changeContainer(container);
+			}
+			@Override
+			public boolean useTimer() {
+				return false;
+			}
+			@Override
+			public void update(RWTVirtualController virtualController, long interval) {
+			}
+		};
+		GameOverGameState = new IGameState() {
+			@Override
+			public void init(RWTFrame3D frame) {
+				TemplateAction2D.this.frame = frame;
+				RWTContainer container = new GameOverContainer(TemplateAction2D.this);
+				changeContainer(container);
+			}
+			@Override
+			public boolean useTimer() {
+				return false;
+			}
+			@Override
+			public void update(RWTVirtualController virtualController, long interval) {
+			}
+		};
+		setCurrentGameState(initialGameState);
+
+	}
 
 
 
@@ -88,7 +105,7 @@ public class TemplateAction2D extends SimpleActionGame {
 
 		File f = new File("data\\\\EnemyPosition\\\\EnemyPosition.txt");
 
-		//closeメソッドは自動呼び出しの対象とする。
+		//敵の座標
 		try(Scanner sc = new Scanner(f)){
 
 			sc.useDelimiter(",");
@@ -125,18 +142,18 @@ public class TemplateAction2D extends SimpleActionGame {
 		// ステージの3Dデータを読み込み配置する
 		stage = new Ground2D("data\\stage3\\stage3.wrl",
 				"data\\stage\\testhaikei.jpg", windowSizeWidth, windowSizeHeight);
-//
-//		universe.place(stage);
-//		universe.place(player);
-//		for(int i=0;i<ENEMYNUM;i++) {
-//			universe.place(enemies.get(i)); // universeに置く。後で取り除けるようにオブジェクトを配置する。
-//		}
-//		universe.place(enemy2);
+
+		universe.place(stage);
+		universe.place(player);
+		for(int i=0;i<ENEMYNUM;i++) {
+			universe.place(enemies.get(i)); // universeに置く。後で取り除けるようにオブジェクトを配置する。
+		}
+		universe.place(enemy2);
 
 
 
-		haikei = new Ground2D(null,
-				"data\\images\\haikei.jpg", windowSizeWidth, windowSizeHeight);
+//		haikei = new Ground2D(null,
+//				"data\\title\\title.jpg", windowSizeWidth, windowSizeHeight);
 
 		// 表示範囲を決める（左上が原点としてその原点から幅、高さを計算する）
 		setViewRange(RANGE, RANGE);
@@ -155,14 +172,15 @@ public class TemplateAction2D extends SimpleActionGame {
 	@Override
 	public void progress(RWTVirtualController virtualController, long interval) {
 
-		Title();
-		if (virtualController.isKeyDown(0, RWTVirtualController.DOWN)&&displayStatus==0) {
-			displayStatus=1;//ゲームスタート
-
-		}
-
-		if (displayStatus==1) {
+//		Title();
+//		if (virtualController.isKeyDown(0, RWTVirtualController.DOWN)&&displayStatus==0) {
+//			displayStatus=1;//ゲームスタート
+//
+//		}
+//
+//		if (displayStatus==1) {
 			GameSetUp();
+
 
 
 
@@ -198,7 +216,7 @@ public class TemplateAction2D extends SimpleActionGame {
 			}
 
 			if (player.getPosition().getY() < -RANGE / 2.0) {
-				restart();//タイトル画面へ(ゲームオーバー）
+				GameOver();//(ゲームオーバー）
 			}
 
 			player.motion(interval, stage);
@@ -210,11 +228,18 @@ public class TemplateAction2D extends SimpleActionGame {
 //			System.out.println(player.getPosition().getVector2d());
 
 			// 衝突判定（プレイヤーと敵）
+
 			if (player.checkCollision(enemy2)) {
 				System.out.println("敵に接触した！");
+				GameOver();
+			}
+			for(int i=0;i<enemies.size(); i++) {
+				if (player.checkCollision(enemies.get(i))) {
+					GameOver();
+				}
 			}
 
-		}
+//		}
 	}
 
 	public  void Title() {
@@ -244,11 +269,16 @@ public class TemplateAction2D extends SimpleActionGame {
 		}
 	}
 
+	public void GameOver() {
+		stop();
+		setCurrentGameState(GameOverGameState);
+		start();
+	}
 	public void restart() {
-		dispcnt=0;
-		displayStatus=0;
+//		dispcnt=0;
+//		displayStatus=0;
 
-	//	stop();
+		stop();
 		universe.displace(stage);
 		universe.displace(player);
 		universe.displace(enemy2);
@@ -269,9 +299,9 @@ public class TemplateAction2D extends SimpleActionGame {
 		enemy2.setPosition(0.0, 5.0);
 		enemy2.setDirection(1.0, 0.0);
 
-		//setCurrentGameState(initialGameState);
+		setCurrentGameState(initialGameState);
 
-		//start();
+		start();
 
 	}
 

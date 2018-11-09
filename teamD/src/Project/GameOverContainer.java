@@ -8,20 +8,20 @@ import framework.RWT.RWTVirtualController;
 import framework.RWT.RWTVirtualKey;
 import framework.game2D.Ground2D;
 
-public class StartContainer extends RWTContainer {
+public class GameOverContainer extends RWTContainer {
 	private TemplateAction2D game;
 	private Ground2D haikei;
 
 
-	public StartContainer(TemplateAction2D game) {
+	public GameOverContainer(TemplateAction2D game) {
 		this.game = game;
 	}
 
 	@Override
 	public void build(GraphicsConfiguration gc) {
-		RWTImage startImage = new RWTImage("data\\title\\title.jpg");
+		RWTImage startImage = new RWTImage("data\\gameover\\gameover.jpg");
 		startImage.setRelativePosition(0, 0);
-		startImage.setImage("data\\title\\title.jpg");
+		startImage.setImage("data\\gameover\\gameover.jpg");
 		startImage.setSize(800, 800);
 		addWidget(startImage);
 		repaint();
@@ -31,8 +31,8 @@ public class StartContainer extends RWTContainer {
 
 	@Override
 	public void keyPressed(RWTVirtualKey key) {
-		if (key.getVirtualKey() == RWTVirtualController.DOWN) {
-			game.play();
+		if (key.getVirtualKey() == RWTVirtualController.BUTTON_A) {
+			game.restart();
 		}
 	}
 
