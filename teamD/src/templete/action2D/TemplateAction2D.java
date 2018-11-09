@@ -34,7 +34,7 @@ public class TemplateAction2D extends SimpleActionGame {
 		universe.place(enemy); // universeに置く。後で取り除けるようにオブジェクトを配置する。
 
 		// ステージの3Dデータを読み込み配置する
-		stage = new Ground2D("data\\stage3\\stage3.wrl",
+		stage = new Ground2D("data\\stage\\stage.3ds",
 				"data\\images\\m101.jpg", windowSizeWidth, windowSizeHeight);
 		universe.place(stage);
 

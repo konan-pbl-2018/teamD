@@ -10,9 +10,12 @@ import framework.game2D.Velocity2D;
  * @author H.Kotobuki
  *
  */
+
+
 public class Enemy extends OvergroundActor2D {
 	//private static final double ENEMY_SPEED = 5.0;
 
+	private boolean motionFlag=false;
 	@Override
 	public String getAnimationFileName() {
 		return null;
@@ -30,15 +33,24 @@ public class Enemy extends OvergroundActor2D {
 		curv.setX(0.0);
 		this.setVelocity(curv);
 
-		if (this.isOnGround()) {
-			curv.setY(10.0);
-			this.setVelocity(curv);
-
-		}
+//		if (this.isOnGround()) {
+//			curv.setY(10.0);
+//			this.setVelocity(curv);
+//
+//		}
 
 		this.movePositionLeft(0.02);
 		super.motion(interval, ground);
 	}
+	public void setmotionFlag(boolean flag) {
+		motionFlag=flag;
+	}
+
+	public boolean getmotionFlag() {
+		return motionFlag;
+	}
+
+
 }
 
 
