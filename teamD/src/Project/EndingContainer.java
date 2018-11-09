@@ -1,10 +1,9 @@
 package Project;
 
-import java.awt.Font;
 import java.awt.GraphicsConfiguration;
 
 import framework.RWT.RWTContainer;
-import framework.RWT.RWTLabel;
+import framework.RWT.RWTImage;
 import framework.RWT.RWTVirtualController;
 import framework.RWT.RWTVirtualKey;
 
@@ -17,12 +16,12 @@ public class EndingContainer extends RWTContainer {
 
 	@Override
 	public void build(GraphicsConfiguration gc) {
-		RWTLabel startLabel = new RWTLabel();
-		startLabel.setString("Finish");
-		startLabel.setRelativePosition(0.3f, 0.5f);
-		Font f = new Font("", Font.PLAIN, 60);
-		startLabel.setFont(f);
-		addWidget(startLabel);
+		RWTImage startImage = new RWTImage("data\\title\\gameclear.jpg");
+		startImage.setRelativePosition(0, 0);
+		startImage.setImage("data\\title\\gameclear.jpg");
+		startImage.setSize(800, 800);
+		addWidget(startImage);
+		repaint();
 	}
 
 	@Override

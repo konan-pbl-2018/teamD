@@ -67,6 +67,8 @@ public class TemplateShooting2DMultiStates extends SimpleShootingGame {
 			public void update(RWTVirtualController virtualController, long interval) {
 			}
 		};
+
+
 		setCurrentGameState(initialGameState);
 	}
 

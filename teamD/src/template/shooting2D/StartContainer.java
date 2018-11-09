@@ -1,6 +1,5 @@
 package template.shooting2D;
 
-import java.awt.Event;
 import java.awt.Font;
 import java.awt.GraphicsConfiguration;
 
@@ -11,6 +10,7 @@ import framework.RWT.RWTVirtualKey;
 
 public class StartContainer extends RWTContainer {
 	private TemplateShooting2DMultiStates game;
+
 
 	public StartContainer(TemplateShooting2DMultiStates game) {
 		this.game = game;

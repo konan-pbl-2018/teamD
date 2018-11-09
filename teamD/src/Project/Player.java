@@ -20,11 +20,11 @@ public class Player extends OvergroundActor2D {
 	}
 
 	public String getAnimationFileName() {
-		return "data\\TemplateShooting\\Character\\pocha\\walk.wrl";
+		return null;
 	}
 
 	public String getModelFileName() {
-		return "data\\TemplateShooting\\Character\\pocha\\pocha.wrl";
+		return "data\\character\\yuusya.obj";
 	}
 
 	/**
@@ -34,7 +34,7 @@ public class Player extends OvergroundActor2D {
 	 *            “®‚©‚·—Ê
 	 */
 	public void movePositionLeft(double d) {
-		super.setDirection(LEFT_AXIS);
+		super.setDirection(Right_AXIS);
 		super.movePositionLeft(d);
 	}
 
@@ -45,7 +45,7 @@ public class Player extends OvergroundActor2D {
 	 *            “®‚©‚·—Ê
 	 */
 	public void movePositionRight(double d) {
-		super.setDirection(Right_AXIS);
+		super.setDirection(LEFT_AXIS);
 		super.movePositionRight(d);
 	}
 
