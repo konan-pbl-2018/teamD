@@ -33,7 +33,7 @@ public abstract class Actor extends Animatable {
 	private static final Vector3d X_AXIS = new Vector3d(1.0, 0.0, 0.0);
 	private static final Vector3d Y_AXIS = new Vector3d(0.0, 1.0, 0.0);
 	private static final Vector3d Z_AXIS = new Vector3d(0.0, 0.0, 1.0);
-	
+
 	public Actor(Object3D body, Animation3D animation) {
 		super(new Solid3D(body), animation);
 		mode = modeOnGround;
@@ -49,7 +49,7 @@ public abstract class Actor extends Animatable {
 		mode = modeOnGround;
 	}
 
-	
+
 	/**
 	 * 単位時間ごとの動作（衝突判定処理も行う）
 	 * @param interval --- 前回呼び出されたときからの経過時間（ミリ秒単位）
@@ -59,8 +59,8 @@ public abstract class Actor extends Animatable {
 		((Solid3D)body).move(interval, getGravity(), getGravityCenter());
 		super.motion(interval);
 	}
-	
-	
+
+
 	/**
 	 * 単位時間ごとの動作（衝突判定処理も行う）
 	 * @param interval --- 前回呼び出されたときからの経過時間（ミリ秒単位）
@@ -76,12 +76,12 @@ public abstract class Actor extends Animatable {
 			if (animation.progress(interval) == false) {
 				onEndAnimation();
 			}
-			
+
 			// 3. 姿勢を変える
 			body.apply(animation.getPose(), false);
 		}
 
-		// 4. 衝突判定 
+		// 4. 衝突判定
 		CollisionResult cr = PhysicsUtility.doesIntersect((Solid3D)body, ground);
 
 		// 5. 衝突応答
@@ -121,7 +121,7 @@ public abstract class Actor extends Animatable {
 				// 下からぶつかった、または接触した(頭をぶつけた)
 				if (cr.length > GeometryUtility.TOLERANCE) {
 					// 5.1. 押し戻す
-					onIntersect(cr, interval);				
+					onIntersect(cr, interval);
 				}
 			}
 			cr = null;
@@ -131,10 +131,10 @@ public abstract class Actor extends Animatable {
 			mode = modeFreeFall;
 		}
 	}
-	
+
 	public void motion(long interval, Ground ground,ArrayList<Force3D> forces,
 			ArrayList<Position3D> appPoints) {
-		
+
 		forces.add(getGravity());
 		appPoints.add(getGravityCenter());
 
@@ -146,12 +146,12 @@ public abstract class Actor extends Animatable {
 			if (animation.progress(interval) == false) {
 				onEndAnimation();
 			}
-			
+
 			// 3. 姿勢を変える
 			body.apply(animation.getPose(), false);
 		}
 
-		// 4. 衝突判定 
+		// 4. 衝突判定
 		CollisionResult cr = PhysicsUtility.doesIntersect((Solid3D)body, ground);
 
 		// 5. 衝突応答
@@ -191,7 +191,7 @@ public abstract class Actor extends Animatable {
 				// 下からぶつかった、または接触した(頭をぶつけた)
 				if (cr.length > GeometryUtility.TOLERANCE) {
 					// 5.1. 押し戻す
-					onIntersect(cr, interval);				
+					onIntersect(cr, interval);
 				}
 			}
 			cr = null;
@@ -201,11 +201,11 @@ public abstract class Actor extends Animatable {
 			mode = modeFreeFall;
 		}
 	}
-	
+
 	public void setInitialDirection(Vector3d dir) {
 		direction = dir;
 	}
-	
+
 	/**
 	 * 指定した方向に向かせる
 	 * @param vec 新しい向き
@@ -222,11 +222,11 @@ public abstract class Actor extends Animatable {
 		v1.cross(v1, v2);
 		double sin = v1.dot(Y_AXIS);
 		double angle = Math.atan2(sin, cos);
-		AxisAngle4d axisAngle = new AxisAngle4d(Y_AXIS, angle); 
+		AxisAngle4d axisAngle = new AxisAngle4d(Y_AXIS, angle);
 		Quaternion3D quat = new Quaternion3D(axisAngle);
 		((Solid3D)body).apply(quat, false);
 	}
-	
+
 	/**
 	 * 現在向いている方向を取得する
 	 * @return 現在の向き
@@ -237,8 +237,8 @@ public abstract class Actor extends Animatable {
 		trans.set(((Solid3D)body).getQuaternion().getAxisAngle());
 		trans.transform(dir);
 		return dir;
-	}	
-	
+	}
+
 	/**
 	 * 移動速度ベクトルを設定する
 	 * @param vel 新しい移動速度ベクトル
@@ -246,7 +246,7 @@ public abstract class Actor extends Animatable {
 	public void setVelocity(Velocity3D vel) {
 		((Solid3D)body).apply(vel, false);
 	}
-	
+
 	/**
 	 * 移動速度ベクトルを取得する
 	 * @return 現在の移動速度ベクトル
@@ -254,7 +254,7 @@ public abstract class Actor extends Animatable {
 	public Velocity3D getVelocity() {
 		return ((Solid3D)body).getVelocity();
 	}
-	
+
 	/**
 	 * X軸を中心に回転する
 	 * @param angle 回転角（反時計回り, 単位:ラジアン）
@@ -262,9 +262,9 @@ public abstract class Actor extends Animatable {
 	public void rotX(double angle) {
 		Quaternion3D curQuat = body.getQuaternion();
 		curQuat.add(new AxisAngle4d(X_AXIS, angle));
-		body.apply(curQuat, false);		
+		body.apply(curQuat, false);
 	}
-	
+
 	/**
 	 * Y軸を中心に回転する
 	 * @param angle 回転角（反時計回り, 単位:ラジアン）
@@ -272,9 +272,9 @@ public abstract class Actor extends Animatable {
 	public void rotY(double angle) {
 		Quaternion3D curQuat = body.getQuaternion();
 		curQuat.add(new AxisAngle4d(Y_AXIS, angle));
-		body.apply(curQuat, false);		
+		body.apply(curQuat, false);
 	}
-	
+
 	/**
 	 * Z軸を中心に回転する
 	 * @param angle 回転角（反時計回り, 単位:ラジアン）
@@ -282,7 +282,7 @@ public abstract class Actor extends Animatable {
 	public void rotZ(double angle) {
 		Quaternion3D curQuat = body.getQuaternion();
 		curQuat.add(new AxisAngle4d(Z_AXIS, angle));
-		body.apply(curQuat, false);		
+		body.apply(curQuat, false);
 	}
 
 	/**

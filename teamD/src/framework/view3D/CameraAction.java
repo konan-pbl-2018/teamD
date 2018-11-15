@@ -8,9 +8,9 @@ import framework.model3D.Universe;
 
 /**
  * 2Dアクション用のカメラ
- * 
+ *
  * @author K.Yamane
- * 
+ *
  */
 public class CameraAction extends Camera3D {
 
@@ -31,7 +31,7 @@ public class CameraAction extends Camera3D {
 	}
 
 	public void setChaseMode(OvergroundActor2D actor) {
-		setViewPoint(new Position3D(actor.getPosition().getX(), 0.0,
+		setViewPoint(new Position3D(actor.getPosition().getX(), 0,
 				cameraRange));
 	}
 

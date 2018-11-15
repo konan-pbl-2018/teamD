@@ -27,7 +27,7 @@ public class EndingContainer extends RWTContainer {
 	@Override
 	public void keyPressed(RWTVirtualKey key) {
 		if (key.getVirtualKey() == RWTVirtualController.BUTTON_A) {
-			game.restart();
+			game.continued();
 		}
 	}
 

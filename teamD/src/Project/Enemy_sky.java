@@ -14,6 +14,8 @@ import framework.game2D.Velocity2D;
  */
 public class Enemy_sky extends OvergroundActor2D {
 	private static final double ENEMY_SPEED = 1.0;
+	private boolean motionFlag=false;
+
 
 	@Override
 	public String getAnimationFileName() {
@@ -34,4 +36,13 @@ public class Enemy_sky extends OvergroundActor2D {
 		setVelocity(new Velocity2D(v));
 		super.motion(interval, ground);
 	}
+
+	public void setmotionFlag(boolean flag) {
+		motionFlag=flag;
+	}
+
+	public boolean getmotionFlag() {
+		return motionFlag;
+	}
+
 }

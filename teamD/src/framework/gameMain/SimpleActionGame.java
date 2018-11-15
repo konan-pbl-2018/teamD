@@ -53,7 +53,7 @@ public abstract class SimpleActionGame extends AbstractGame implements
 	protected IGameState getCurrentGameState() {
 		return currentState;
 	}
-	
+
 	protected void setCurrentGameState(IGameState state) {
 		currentState = state;
 	}
@@ -137,7 +137,7 @@ public abstract class SimpleActionGame extends AbstractGame implements
 			}
 		};
 	}
-	
+
 	protected void changeContainer(RWTContainer container) {
 		frame.setContentPane(container);
 		GraphicsConfiguration gc = null;
@@ -152,7 +152,7 @@ public abstract class SimpleActionGame extends AbstractGame implements
 			gct3D.setStencilSize(8);
 			gc = gd.getBestConfiguration(gct3D);
 		}
-		container.build(gc);		
+		container.build(gc);
 	}
 
 
