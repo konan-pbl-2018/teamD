@@ -265,7 +265,7 @@ public class TemplateAction2D extends SimpleActionGame {
 		boss = new Boss();
 		boss.setPosition(-250, 8);
 		boss.setDirection(1.0, 0.0);
-		boss.setmotionFlag(true);
+//		boss.setmotionFlag(true);
 
 		//剣のオブジェクト初期化
 		sword = new Sword();
@@ -386,9 +386,9 @@ public class TemplateAction2D extends SimpleActionGame {
 			}
 		}
 
-//		if (Math.abs(player.getPosition().getX() - boss.getPosition().getX()) < RANGE / 2) {
-//			boss.setmotionFlag(true);
-//		}
+		if (Math.abs(player.getPosition().getX() - boss.getPosition().getX()) < RANGE / 2+100) {
+			boss.setmotionFlag(true);
+		}
 
 		if (boss.getmotionFlag() == true) {
 			if ((int) (100 * Math.random()) > 98) {
