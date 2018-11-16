@@ -30,16 +30,19 @@ public class Enemy extends OvergroundActor2D {
 	public void motion(long interval, Ground2D ground, Player player) {
 		Velocity2D curv;
 		curv = this.getVelocity();
-		curv.setX(0.0);
-		this.setVelocity(curv);
+		//curv.setX(0.0);
+		//this.setVelocity(curv);
 
 		if (this.isOnGround()) {
 			curv.setY(10.0);
-			this.setVelocity(curv);
+
 
 		}
+		if(this.getVelocity().getX()<5) {
+			curv.setX(this.getVelocity().getX()+1);
+		}
+		this.setVelocity(curv);
 
-		this.movePositionRight(0.02);
 		super.motion(interval, ground);
 	}
 	public void setmotionFlag(boolean flag) {

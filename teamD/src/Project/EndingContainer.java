@@ -1,9 +1,12 @@
 package Project;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.GraphicsConfiguration;
 
 import framework.RWT.RWTContainer;
 import framework.RWT.RWTImage;
+import framework.RWT.RWTLabel;
 import framework.RWT.RWTVirtualController;
 import framework.RWT.RWTVirtualKey;
 
@@ -21,6 +24,13 @@ public class EndingContainer extends RWTContainer {
 		startImage.setImage("data\\title\\gameclear.jpg");
 		startImage.setSize(800, 800);
 		addWidget(startImage);
+		RWTLabel timeLabel = new RWTLabel();
+		timeLabel.setString("クリアタイム:"+game.getTime()+"秒！");
+		timeLabel.setRelativePosition(0.5f, 0.5f);
+		timeLabel.setColor(Color.BLACK);
+		Font f = new Font("", Font.PLAIN, 20);
+		timeLabel.setFont(f);
+		addWidget(timeLabel);
 		repaint();
 	}
 

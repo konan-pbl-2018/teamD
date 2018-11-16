@@ -19,7 +19,7 @@ public class Sword extends OvergroundActor2D {
 	@Override
 	public String getModelFileName() {
 		//Œ•‚Ì‰æ‘œ“Ç‚İ‚İ
-		return "data\\Head4.wrl";
+		return "data\\character\\sword.obj";
 	}
 
 }

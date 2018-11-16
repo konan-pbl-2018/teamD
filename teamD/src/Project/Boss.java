@@ -26,7 +26,7 @@ public class Boss extends OvergroundActor2D {
 
 	@Override
 	public String getModelFileName() {
-		return "data\\character\\enemy1.obj";
+		return "data\\character\\boss.obj";
 	}
 
 	public void motion(long interval, Ground2D ground) {

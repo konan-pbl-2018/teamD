@@ -32,7 +32,7 @@ public class StartContainer extends RWTContainer {
 	@Override
 	public void keyPressed(RWTVirtualKey key) {
 		if (key.getVirtualKey() == RWTVirtualController.DOWN) {
-			game.play();
+			game.GoSinalio();
 		}
 	}
 
