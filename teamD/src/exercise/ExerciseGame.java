@@ -12,18 +12,14 @@ import com.sun.j3d.utils.image.TextureLoader;
 
 import framework.RWT.RWTFrame3D;
 import framework.RWT.RWTVirtualController;
-import framework.game2D.Sprite;
 import framework.gameMain.SimpleGame;
-import framework.gameMain.SimpleShootingGame;
 import framework.model3D.BackgroundBox;
-import framework.model3D.ModelFactory;
-import framework.model3D.Object3D;
 import framework.model3D.Universe;
 import framework.view3D.Camera3D;
 
-public class ExerciseGame extends SimpleShootingGame {
+public class ExerciseGame extends SimpleGame {
 	@Override
-	public void init(Universe universe) {
+	public void init(Universe universe, Camera3D camera) {
 		// ïΩçsåıåπÇîzíuÇ∑ÇÈ
         DirectionalLight dirlight = new DirectionalLight(
         		true,                           //åıÇÃON/OFF
@@ -32,57 +28,57 @@ public class ExerciseGame extends SimpleShootingGame {
         );
         dirlight.setInfluencingBounds(new BoundingSphere(new Point3d(), 10000.0));
         universe.placeLight(dirlight);
-        
+
 		// ä¬ã´åıÇîzíuÇ∑ÇÈ
-		AmbientLight amblight = new AmbientLight(new Color3f(0.5f, 0.5f, 0.5f));		
+		AmbientLight amblight = new AmbientLight(new Color3f(0.5f, 0.5f, 0.5f));
 		amblight.setInfluencingBounds(new BoundingSphere(new Point3d(), 10000.0));
 		universe.placeLight(amblight);
-        
+
 		// îwåiÇçÏê¨Ç∑ÇÈ
 		buildSkyBox(universe);
 	}
 
 	@Override
 	public void progress(RWTVirtualController virtualController, long interval) {
-		
+
 	}
 
 	@Override
 	public RWTFrame3D createFrame3D() {
 		return null;
 	}
-	
+
 	/**
 	 * îwåiÇçÏê¨Ç∑ÇÈ
 	 * @param universe
 	 */
 	private void buildSkyBox(Universe universe) {
-		TextureLoader loaderTop = new TextureLoader("data\\texture\\top.jpg", 
-				TextureLoader.BY_REFERENCE | TextureLoader.Y_UP, 
+		TextureLoader loaderTop = new TextureLoader("data\\texture\\top.jpg",
+				TextureLoader.BY_REFERENCE | TextureLoader.Y_UP,
 				null);
 		Texture textureTop = loaderTop.getTexture();
-		TextureLoader loaderBottom = new TextureLoader("data\\texture\\bottom.jpg", 
-				TextureLoader.BY_REFERENCE | TextureLoader.Y_UP, 
+		TextureLoader loaderBottom = new TextureLoader("data\\texture\\bottom.jpg",
+				TextureLoader.BY_REFERENCE | TextureLoader.Y_UP,
 				null);
 		Texture textureBottom = loaderBottom.getTexture();
-		TextureLoader loaderNorth = new TextureLoader("data\\texture\\north.jpg", 
-				TextureLoader.BY_REFERENCE | TextureLoader.Y_UP, 
+		TextureLoader loaderNorth = new TextureLoader("data\\texture\\north.jpg",
+				TextureLoader.BY_REFERENCE | TextureLoader.Y_UP,
 				null);
 		Texture textureNorth = loaderNorth.getTexture();
-		TextureLoader loaderSouth = new TextureLoader("data\\texture\\south.jpg", 
-				TextureLoader.BY_REFERENCE | TextureLoader.Y_UP, 
+		TextureLoader loaderSouth = new TextureLoader("data\\texture\\south.jpg",
+				TextureLoader.BY_REFERENCE | TextureLoader.Y_UP,
 				null);
 		Texture textureSouth = loaderSouth.getTexture();
-		TextureLoader loaderWest = new TextureLoader("data\\texture\\west.jpg", 
-				TextureLoader.BY_REFERENCE | TextureLoader.Y_UP, 
+		TextureLoader loaderWest = new TextureLoader("data\\texture\\west.jpg",
+				TextureLoader.BY_REFERENCE | TextureLoader.Y_UP,
 				null);
 		Texture textureWest = loaderWest.getTexture();
-		TextureLoader loaderEast = new TextureLoader("data\\texture\\east.jpg", 
-				TextureLoader.BY_REFERENCE | TextureLoader.Y_UP, 
+		TextureLoader loaderEast = new TextureLoader("data\\texture\\east.jpg",
+				TextureLoader.BY_REFERENCE | TextureLoader.Y_UP,
 				null);
 		Texture textureEast = loaderEast.getTexture();
-		
-		BackgroundBox background = new BackgroundBox(textureNorth, textureWest, 
+
+		BackgroundBox background = new BackgroundBox(textureNorth, textureWest,
 				textureSouth, textureEast, textureTop, textureBottom);
 		BoundingSphere bs = new BoundingSphere();
 		bs.setRadius(1000);
